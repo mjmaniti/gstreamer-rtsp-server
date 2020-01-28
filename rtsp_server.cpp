@@ -34,7 +34,7 @@ int main( int argc, char * argv[])
 
 	gst_rtsp_mount_points_add_factory(mounts, "/test", factory);
 
-	//g_object_unref(mounts);
+	g_object_unref(mounts);
 
 	g_main_loop_run(loop); // starts serving clients
 
