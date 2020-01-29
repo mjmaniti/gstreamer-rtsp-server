@@ -28,7 +28,9 @@ int main( int argc, char * argv[])
 
 	factory = gst_rtsp_media_factory_new();
 	gst_rtsp_media_factory_set_launch(factory,
-		"( videotestsrc ! x264enc ! rtph264pay pt=96 name=pay0 )");
+		"( v4l2src device=/dev/video0 ! video/x-raw,width=1344,height=376,format=(string)YUY2 ! videoconvert ! video/x-raw,format=(string)I420 ! x264enc ! rtph264pay pt=96 name=pay0 )");
+
+	gst_rtsp_media_factory_set_shared(factory, true);
 	
 	mounts = gst_rtsp_server_get_mount_points(server);
 
